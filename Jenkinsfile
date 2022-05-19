@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'master'
+        label 'windows_slave_1'
     }
     stages {
         stage('Build') {
@@ -26,9 +26,9 @@ pipeline {
                 }
             }
         }
-        stage('Sonar-Report') {
+        stage('Deploy') {
             steps {
-                bat 'mvn clean install sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.analysis.mode=publish'
+                bat 'java -jar C:/jenkins_slave_01/workspace/Webapp/target/java-webapp-1.0.jar'
             }
         }
     }
